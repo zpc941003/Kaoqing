@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ServletDemo</servlet-name>
+    <servlet-class>servlet.ServletDemo</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ServletKqjl</servlet-name>
+    <servlet-class>servlet.ServletKqjl</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ServletJqsq</servlet-name>
+    <servlet-class>servlet.ServletJqsq</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ServletCcsq</servlet-name>
+    <servlet-class>servlet.ServletCcsq</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ServletJbsq</servlet-name>
+    <servlet-class>servlet.ServletJbsq</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ServletTxsq</servlet-name>
+    <servlet-class>servlet.ServletTxsq</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ServletKqcx</servlet-name>
+    <servlet-class>servlet.ServletKqcx</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>ServletDemo</servlet-name>
+    <url-pattern>/servlet/ServletDemo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletKqjl</servlet-name>
+    <url-pattern>/servlet/ServletKqjl</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletJqsq</servlet-name>
+    <url-pattern>/servlet/ServletJqsq</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletCcsq</servlet-name>
+    <url-pattern>/servlet/ServletCcsq</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletJbsq</servlet-name>
+    <url-pattern>/servlet/ServletJbsq</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletTxsq</servlet-name>
+    <url-pattern>/servlet/ServletTxsq</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletKqcx</servlet-name>
+    <url-pattern>/servlet/ServletKqcx</url-pattern>
+  </servlet-mapping>
+
+</web-app>

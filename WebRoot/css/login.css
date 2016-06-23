@@ -1,0 +1,33 @@
+body {
+    background: url(../image/1.jpg) 50% 0 no-repeat;
+}
+
+.form-style {
+    width: 500px;
+    position: relative;
+    top: 170px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #dedede;
+    border-radius: 5px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.btn_box {
+    text-align: center;
+    margin-top: 30px
+}
+
+#btn_admin_login {
+    width: 120px;
+}
+
+h1 {
+    margin: 0px auto 40px auto;
+    text-align: center;
+    color: #5BC0DE;
+    /*margin-left: -25px;*/
+    font-size: 35px;
+    font-weight: bold;
+    text-shadow: 0px 1px 1px #fff;
+}
