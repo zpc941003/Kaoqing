@@ -53,13 +53,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <tr>
                                 <th data-field="radio" data-checkbox="true"></th>
                                 <th data-field="id" data-visible="false"></th>
-                                <th data-field="name" data-align="center">员工姓名</th>
+                                <th data-field="username" data-align="center">员工姓名</th>
                                 <th data-field="kq" data-align="center">签卡(次)</th>
                                 <th data-field="jq" data-align="center">请假(次)</th>
                                 <th data-field="cc" data-align="center">出差(次)</th>
                                 <th data-field="jb" data-align="center">加班(次)</th>
                                 <th data-field="tx" data-align="center">调休(次)</th>
-                                <th data-field="operate" data-align="center">操作</th>
                             </tr>
                         </thead>
                     </table>
@@ -106,6 +105,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
     </div>
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">详细信息</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="Table1" data-toggle="table" data-height="400" data-side-pagination="server" data-pagination="true" data-page-list="[5, 10, 20, 50, 100, 200]">
+                        <thead>
+                            <tr>
+                                <th data-field="id" data-visible="false"></th>
+                                <th data-field="time" data-align="center">考勤时间</th>
+                                <th data-field="category" data-align="center">类别</th>
+                                <th data-field="name" data-align="center">员工姓名</th>
+                                <th data-field="period" data-align="center">考勤时段</th>
+                                <th data-field="state" data-align="center">考勤说明</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <a href="javascript:void(0)" class="kq" data-toggle='modal' data-target='#myModal'>asdasasdasdasd</a>
     <script type="text/javascript">
         $('.form_date').datetimepicker({
             language: 'zh-CN',
@@ -117,6 +146,64 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             minView: 2,
             forceParse: 0
         });
+
+        function dokq(e){
+            console.log(e);
+            $.ajax({
+                type: "POST",
+                url: "servlet/ServletKqcx",
+                dataType: "json",
+                data: {
+                    "operate": "kq",
+                    "name":e.getAttribute("title"),
+                },
+                success: function(jsonResult) {
+                    if(jsonResult.msg=="success"){
+                        $("#Table1").bootstrapTable('refresh', {
+                            url: "servlet/ServletXxxx?operate=kq"
+                        });
+                    }
+                },
+                error: function(jqXHR, textStatus) {}
+
+            })
+        }
+
+
+        $(document).ready(function() {
+            
+            $("#btn").bind("click", function() {
+                if ($("#dtp_input2").val() == '') {
+                    alert("请选择起始时间");
+                    return false;
+                }
+                if ($("#dtp_input4").val() == '') {
+                    alert("请选择终止时间");
+                    return false;
+                }
+                $("#Table").bootstrapTable('refresh', {
+                    url: "servlet/ServletKqcx?date1="+$("#dtp_input2").val()+"&date2="+$("#dtp_input4").val()
+                });
+            })
+
+            $("#exit").bind("click", function() {
+                $.ajax({
+                    type: "POST",
+                    url: "servlet/ServletKqcx",
+                    dataType: "json",
+                    data: {
+                        "operate": "exit"
+                    },
+                    success: function(jsonResult) {
+                        if(jsonResult.msg=="success"){
+                            window.location.href="login.jsp";
+                        }
+                    },
+                    error: function(jqXHR, textStatus) {}
+
+                })
+            })
+        })
     </script>
 </body>
 </html>

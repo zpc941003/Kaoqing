@@ -19,11 +19,11 @@ public class KqcxDao {
 		try{connection=DBcon.getConnection();
 			String sql="SELECT username,kq,jq,cc,jb,tx FROM ";
 			sql+="(SELECT username FROM adminlogin) a LEFT JOIN ";
-			sql+="(SELECT name,count(name) AS kq FROM kqjl WHERE time BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) b ON a.username=b.name LEFT JOIN ";
-			sql+="(SELECT name,count(name) AS jq FROM jqsq WHERE starttime BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) c ON a.username=c.name LEFT JOIN ";
-			sql+="(SELECT name,count(name) AS cc FROM ccsq WHERE time BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) d ON a.username=d.name LEFT JOIN ";
-			sql+="(SELECT name,count(name) AS jb FROM jbsq WHERE time BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) e ON a.username=e.name LEFT JOIN ";
-			sql+="(SELECT name,count(name) AS tx FROM txsq WHERE time BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) f ON a.username=f.name;";
+			sql+="(SELECT name,CAST(count(name) AS CHAR(10)) AS kq FROM kqjl WHERE time BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) b ON a.username=b.name LEFT JOIN ";
+			sql+="(SELECT name,CAST(count(name) AS CHAR(10)) AS jq FROM jqsq WHERE starttime BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) c ON a.username=c.name LEFT JOIN ";
+			sql+="(SELECT name,CAST(count(name) AS CHAR(10)) AS cc FROM ccsq WHERE time BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) d ON a.username=d.name LEFT JOIN ";
+			sql+="(SELECT name,CAST(count(name) AS CHAR(10)) AS jb FROM jbsq WHERE time BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) e ON a.username=e.name LEFT JOIN ";
+			sql+="(SELECT name,CAST(count(name) AS CHAR(10)) AS tx FROM txsq WHERE time BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) f ON a.username=f.name;";
 			infoQuery=connection.prepareStatement(sql);
 			results=infoQuery.executeQuery();
 			if(results.next()){
@@ -49,20 +49,24 @@ public class KqcxDao {
 		try{connection=DBcon.getConnection();
 		String sql="SELECT username,kq,jq,cc,jb,tx FROM ";
 		sql+="(SELECT username FROM adminlogin) a LEFT JOIN ";
-		sql+="(SELECT name,count(name) AS kq FROM kqjl WHERE time BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) b ON a.username=b.name LEFT JOIN ";
-		sql+="(SELECT name,count(name) AS jq FROM jqsq WHERE starttime BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) c ON a.username=c.name LEFT JOIN ";
-		sql+="(SELECT name,count(name) AS cc FROM ccsq WHERE time BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) d ON a.username=d.name LEFT JOIN ";
-		sql+="(SELECT name,count(name) AS jb FROM jbsq WHERE time BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) e ON a.username=e.name LEFT JOIN ";
-		sql+="(SELECT name,count(name) AS tx FROM txsq WHERE time BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) f ON a.username=f.name;";
+		sql+="(SELECT name,CAST(count(name) AS CHAR(10)) AS kq FROM kqjl WHERE time BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) b ON a.username=b.name LEFT JOIN ";
+		sql+="(SELECT name,CAST(count(name) AS CHAR(10)) AS jq FROM jqsq WHERE starttime BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) c ON a.username=c.name LEFT JOIN ";
+		sql+="(SELECT name,CAST(count(name) AS CHAR(10)) AS cc FROM ccsq WHERE time BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) d ON a.username=d.name LEFT JOIN ";
+		sql+="(SELECT name,CAST(count(name) AS CHAR(10)) AS jb FROM jbsq WHERE time BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) e ON a.username=e.name LEFT JOIN ";
+		sql+="(SELECT name,CAST(count(name) AS CHAR(10)) AS tx FROM txsq WHERE time BETWEEN '"+date1+"' AND '"+date2+"' GROUP BY name) f ON a.username=f.name;";
 			infoQuery=connection.prepareStatement(sql);
 			results=infoQuery.executeQuery();
 			while(results.next()){
 				Kqcx kj = new Kqcx();
-				kj.setKq(results.getInt("kq"));
-				kj.setJq(results.getInt("jq"));
-				kj.setCc(results.getInt("cc"));
-				kj.setJb(results.getInt("jb"));
-				kj.setTx(results.getInt("tx"));
+				String username=results.getString("username");
+				kj.setUsername(results.getString("username"));
+				String kq=results.getString("kq");
+				kj.setKq("<a title='"+username+"' href='javascript:void(0)' class='kq' onclick='dokq(this)' data-toggle='modal' data-target='#myModal1'>"+kq+"</a>");
+				kj.setJq(results.getString("jq"));
+				kj.setCc(results.getString("cc"));
+				kj.setJb(results.getString("jb"));
+				kj.setTx(results.getString("tx"));
+				System.out.println(results.getString("username")+kj.getKq()+results.getString("jq")+results.getString("cc")+results.getString("jb")+results.getString("tx"));
 				list.add(kj);
 			}
 		}

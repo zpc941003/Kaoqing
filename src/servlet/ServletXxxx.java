@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,19 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Jqsq;
 import bean.Json;
-import bean.Kqcx;
+import bean.Kqjl;
 
 import com.google.gson.Gson;
 
 import dao.JqsqDao;
-import dao.KqcxDao;
+import dao.KqjlDao;
 
-public class ServletKqcx extends HttpServlet {
+public class ServletXxxx extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public ServletKqcx() {
+	public ServletXxxx() {
 		super();
 	}
 
@@ -51,22 +52,29 @@ public class ServletKqcx extends HttpServlet {
 
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		String date1=request.getParameter("date1");
-		String date2=request.getParameter("date2");
-		System.out.println(date1+' '+date2);
 		int limit =Integer.parseInt(request.getParameter("limit"));
 		int offset=Integer.parseInt(request.getParameter("offset"));
-		KqcxDao jd=new KqcxDao();
-		String count=""+jd.findCount(date1,date2,offset,limit);
-		List<Kqcx> list=new ArrayList<Kqcx>();
-		list=jd.findAll(date1,date2,offset,limit);
-		request.getSession().setAttribute("date1", date1);
-		request.getSession().setAttribute("date2", date2);
-		Json json=new Json();
-		json.setTotal(count);
-		json.setRows(list);
-		Gson gson=new Gson();
-		out.print(gson.toJson(json));
+		String date1=(String) request.getSession().getAttribute("date1");
+		String date2=(String) request.getSession().getAttribute("date2");
+		String operate=request.getParameter("operate");
+		String name=(String) request.getSession().getAttribute("name1");
+		System.out.println(name);
+		switch (operate) {
+		case "kq":
+			KqjlDao kd=new KqjlDao();
+			String count=""+kd.findSelectedCount(name,date1,date2,offset,limit);
+			List<Kqjl> list=new ArrayList<Kqjl>();
+			list=kd.findSelected(name,date1,date2,offset,limit);
+			Json json=new Json();
+			json.setTotal(count);
+			json.setRows(list);
+			Gson gson=new Gson();
+			out.print(gson.toJson(json));
+			break;
+
+		default:
+			break;
+		}
 		out.flush();
 		out.close();
 	}
@@ -84,25 +92,20 @@ public class ServletKqcx extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("text/html;charset=utf-8");
+		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		String operate=request.getParameter("operate");
-		switch (operate) {
-		case "exit":
-			request.getSession().setAttribute("username", null);
-			out.print("{\"msg\":\"success\"}");
-			break;
-		case "kq":
-			String name1=request.getParameter("name");
-			request.getSession().setAttribute("name1", name1);
-			out.print("{\"msg\":\"success\"}");
-		default:
-			break;
-		}
+		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+		out.println("<HTML>");
+		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
+		out.println("  <BODY>");
+		out.print("    This is ");
+		out.print(this.getClass());
+		out.println(", using the POST method");
+		out.println("  </BODY>");
+		out.println("</HTML>");
 		out.flush();
 		out.close();
 	}
-	
 
 	/**
 	 * Initialization of the servlet. <br>

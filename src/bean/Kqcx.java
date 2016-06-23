@@ -2,51 +2,63 @@ package bean;
 
 public class Kqcx {
 
-	private int kq;
-	private int jq;
-	private int cc;
-	private int jb;
-	private int tx;
+	private String username;
+	private String kq;
+	private String jq;
+	private String cc;
+	private String jb;
+	private String tx;
 	public Kqcx(){
 		
 	}
-	public Kqcx(int kq, int jq, int cc, int jb, int tx) {
-		//super();
+	public Kqcx(String username, String kq, String jq, String cc, String jb,
+			String tx) {
+		super();
+		this.username = username;
 		this.kq = kq;
 		this.jq = jq;
 		this.cc = cc;
 		this.jb = jb;
 		this.tx = tx;
 	}
-	public int getKq() {
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getKq() {
 		return kq;
 	}
-	public void setKq(int kq) {
+	public void setKq(String kq) {
 		this.kq = kq;
 	}
-	public int getJq() {
+	public String getJq() {
 		return jq;
 	}
-	public void setJq(int jq) {
+	public void setJq(String jq) {
 		this.jq = jq;
 	}
-	public int getCc() {
+	public String getCc() {
 		return cc;
 	}
-	public void setCc(int cc) {
+	public void setCc(String cc) {
 		this.cc = cc;
 	}
-	public int getJb() {
+	public String getJb() {
 		return jb;
 	}
-	public void setJb(int jb) {
+	public void setJb(String jb) {
 		this.jb = jb;
 	}
-	public int getTx() {
+	public String getTx() {
 		return tx;
 	}
-	public void setTx(int tx) {
+	public void setTx(String tx) {
 		this.tx = tx;
 	}
+
+
+
 	
 }

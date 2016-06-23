@@ -68,6 +68,61 @@ public class KqjlDao {
 		return list;
 	}
 	
+	public int findSelectedCount(String name,String date1,String date2,int offset,int limit){
+		int rowCount=0;
+		try{connection=DBcon.getConnection();
+			String sql="SELECT * FROM kqjl where name='"+name+"' AND time BETWEEN '"+date1+"' AND '"+date2+"' ORDER BY time DESC";
+			infoQuery=connection.prepareStatement(sql);
+			results=infoQuery.executeQuery();
+			if(results.next()){
+				results.last(); // 将光标移动到最后一行     
+				rowCount = results.getRow(); // 得到当前行号，即结果集记录数 
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DBcon.closeResultSet(results);
+			DBcon.closeStatement(infoQuery);
+			DBcon.closeConnection(connection);
+		}
+		return rowCount;
+	}
+	
+	
+	public List<Kqjl> findSelected(String name,String date1,String date2,int offset,int limit){
+		List<Kqjl> list=new ArrayList<Kqjl>();
+		try{connection=DBcon.getConnection();
+			String sql="SELECT * FROM kqjl where name='"+name+"' AND time BETWEEN '"+date1+"' AND '"+date2+"' ORDER BY time DESC LIMIT "+offset+","+limit+"";
+			infoQuery=connection.prepareStatement(sql);
+			results=infoQuery.executeQuery();
+			while(results.next()){
+				Kqjl kj = new Kqjl();
+				kj.setId(results.getInt("id"));
+				kj.setTime(results.getString("time"));
+				kj.setCategory(results.getString("category"));
+				kj.setName(results.getString("name"));
+				kj.setPeriod(results.getString("period"));
+				kj.setState(results.getString("state"));
+				list.add(kj);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DBcon.closeResultSet(results);
+			DBcon.closeStatement(infoQuery);
+			DBcon.closeConnection(connection);
+		}
+		return list;
+	}
+	
 	//插入
 	public int add(Kqjl kj){
 		int result=0;
