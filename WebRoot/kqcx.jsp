@@ -134,6 +134,126 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <!-- /.modal-dialog -->
     </div>
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">详细信息</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="Table2" data-toggle="table" data-height="400" data-side-pagination="server" data-pagination="true" data-page-list="[5, 10, 20, 50, 100, 200]">
+                        <thead>
+                            <tr>
+                                <th data-field="id" data-visible="false"></th>
+                                <th data-field="starttime" data-align="center">开始时间</th>
+                                <th data-field="endtime" data-align="center">结束时间</th>
+                                <th data-field="period" data-align="center">假期时长</th>
+                                <th data-field="name" data-align="center">员工姓名</th>
+                                <th data-field="category" data-align="center">假期类别</th>
+                                <th data-field="state" data-formatter="operateFormatter" data-align="center">假期原因</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">详细信息</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="Table3" data-toggle="table" data-height="400" data-side-pagination="server" data-pagination="true" data-page-list="[5, 10, 20, 50, 100, 200]">
+                        <thead>
+                            <tr>
+                                <th data-field="id" data-visible="false"></th>
+                                <th data-field="time" data-align="center">出差时间</th>
+                                <th data-field="period" data-align="center">出差天数(天)</th>
+                                <th data-field="name" data-align="center">员工姓名</th>
+                                <th data-field="friend" data-align="center">同行人员</th>
+                                <th data-field="place" data-align="center">目的地</th>
+                                <th data-field="transport" data-align="center">出行方式</th>
+                                <th data-field="state" data-align="center">出差事由</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">详细信息</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="Table4" data-toggle="table" data-height="400" data-side-pagination="server" data-pagination="true" data-page-list="[5, 10, 20, 50, 100, 200]">
+                        <thead>
+                            <tr>
+                                <th data-field="id" data-visible="false"></th>
+                                <th data-field="time" data-align="center">申请时间</th>
+                                <th data-field="jbtime" data-align="center">加班时间</th>
+                                <th data-field="period" data-align="center">加班时长(天)</th>
+                                <th data-field="name" data-align="center">员工姓名</th>
+                                <th data-field="state" data-align="center">加班原因</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">详细信息</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="Table5" data-toggle="table" data-height="400" data-side-pagination="server" data-pagination="true" data-page-list="[5, 10, 20, 50, 100, 200]">
+                        <thead>
+                            <tr>
+                                <th data-field="id" data-visible="false"></th>
+                                <th data-field="time" data-align="center">申请时间</th>
+                                <th data-field="starttime" data-align="center">调休时间(起)</th>
+                                <th data-field="endtime" data-align="center">调休时间(止)</th>
+                                <th data-field="period" data-align="center">调休时长</th>
+                                <th data-field="name" data-align="center">员工姓名</th>
+                                <th data-field="state" data-align="center">调休原因</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
     <a href="javascript:void(0)" class="kq" data-toggle='modal' data-target='#myModal'>asdasasdasdasd</a>
     <script type="text/javascript">
         $('.form_date').datetimepicker({
@@ -161,6 +281,92 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     if(jsonResult.msg=="success"){
                         $("#Table1").bootstrapTable('refresh', {
                             url: "servlet/ServletXxxx?operate=kq"
+                        });
+                    }
+                },
+                error: function(jqXHR, textStatus) {}
+
+            })
+        }
+
+        function dojq(e){
+            console.log(e);
+            $.ajax({
+                type: "POST",
+                url: "servlet/ServletKqcx",
+                dataType: "json",
+                data: {
+                    "operate": "jq",
+                    "name":e.getAttribute("title"),
+                },
+                success: function(jsonResult) {
+                    if(jsonResult.msg=="success"){
+                        $("#Table2").bootstrapTable('refresh', {
+                            url: "servlet/ServletXxxx?operate=jq"
+                        });
+                    }
+                },
+                error: function(jqXHR, textStatus) {}
+
+            })
+        }
+
+        function docc(e){
+            console.log(e);
+            $.ajax({
+                type: "POST",
+                url: "servlet/ServletKqcx",
+                dataType: "json",
+                data: {
+                    "operate": "cc",
+                    "name":e.getAttribute("title"),
+                },
+                success: function(jsonResult) {
+                    if(jsonResult.msg=="success"){
+                        $("#Table3").bootstrapTable('refresh', {
+                            url: "servlet/ServletXxxx?operate=cc"
+                        });
+                    }
+                },
+                error: function(jqXHR, textStatus) {}
+
+            })
+        }
+        function dojb(e){
+            console.log(e);
+            $.ajax({
+                type: "POST",
+                url: "servlet/ServletKqcx",
+                dataType: "json",
+                data: {
+                    "operate": "jb",
+                    "name":e.getAttribute("title"),
+                },
+                success: function(jsonResult) {
+                    if(jsonResult.msg=="success"){
+                        $("#Table4").bootstrapTable('refresh', {
+                            url: "servlet/ServletXxxx?operate=jb"
+                        });
+                    }
+                },
+                error: function(jqXHR, textStatus) {}
+
+            })
+        }
+        function dotx(e){
+            console.log(e);
+            $.ajax({
+                type: "POST",
+                url: "servlet/ServletKqcx",
+                dataType: "json",
+                data: {
+                    "operate": "tx",
+                    "name":e.getAttribute("title"),
+                },
+                success: function(jsonResult) {
+                    if(jsonResult.msg=="success"){
+                        $("#Table5").bootstrapTable('refresh', {
+                            url: "servlet/ServletXxxx?operate=tx"
                         });
                     }
                 },

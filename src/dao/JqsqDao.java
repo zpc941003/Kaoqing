@@ -38,11 +38,66 @@ public class JqsqDao {
 		}
 		return rowCount;
 	}
+	
+	public int findSelectedCount(String name,String date1,String date2,int offset,int limit){
+		int rowCount=0;
+		try{connection=DBcon.getConnection();
+			String sql="SELECT * FROM jqsq where name='"+name+"' AND starttime BETWEEN '"+date1+"' AND '"+date2+"' ORDER BY starttime DESC";
+			infoQuery=connection.prepareStatement(sql);
+			results=infoQuery.executeQuery();
+			if(results.next()){
+				results.last(); // 将光标移动到最后一行     
+				rowCount = results.getRow(); // 得到当前行号，即结果集记录数 
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DBcon.closeResultSet(results);
+			DBcon.closeStatement(infoQuery);
+			DBcon.closeConnection(connection);
+		}
+		return rowCount;
+	}
 	//查找全部
 	public List<Jqsq> findAll(String name,int offset,int limit){
 		List<Jqsq> list=new ArrayList<Jqsq>();
 		try{connection=DBcon.getConnection();
 			String sql="SELECT * FROM jqsq where name='"+name+"' ORDER BY starttime DESC LIMIT "+offset+","+limit+"";
+			infoQuery=connection.prepareStatement(sql);
+			results=infoQuery.executeQuery();
+			while(results.next()){
+				Jqsq js = new Jqsq();
+				js.setId(results.getInt("id"));
+				js.setStarttime(results.getString("starttime"));
+				js.setEndtime(results.getString("endtime"));
+				js.setCategory(results.getString("category"));
+				js.setName(results.getString("name"));
+				js.setPeriod(results.getString("period"));
+				js.setState(results.getString("state"));
+				list.add(js);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DBcon.closeResultSet(results);
+			DBcon.closeStatement(infoQuery);
+			DBcon.closeConnection(connection);
+		}
+		return list;
+	}
+	
+	public List<Jqsq> findSelected(String name,String date1,String date2,int offset,int limit){
+		List<Jqsq> list=new ArrayList<Jqsq>();
+		try{connection=DBcon.getConnection();
+			String sql="SELECT * FROM jqsq where name='"+name+"' AND starttime BETWEEN '"+date1+"' AND '"+date2+"' ORDER BY starttime DESC LIMIT "+offset+","+limit+"";
 			infoQuery=connection.prepareStatement(sql);
 			results=infoQuery.executeQuery();
 			while(results.next()){

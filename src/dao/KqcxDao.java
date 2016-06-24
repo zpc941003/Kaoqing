@@ -61,11 +61,15 @@ public class KqcxDao {
 				String username=results.getString("username");
 				kj.setUsername(results.getString("username"));
 				String kq=results.getString("kq");
+				String jq=results.getString("jq");
+				String cc=results.getString("cc");
+				String jb=results.getString("jb");
+				String tx=results.getString("tx");
 				kj.setKq("<a title='"+username+"' href='javascript:void(0)' class='kq' onclick='dokq(this)' data-toggle='modal' data-target='#myModal1'>"+kq+"</a>");
-				kj.setJq(results.getString("jq"));
-				kj.setCc(results.getString("cc"));
-				kj.setJb(results.getString("jb"));
-				kj.setTx(results.getString("tx"));
+				kj.setJq("<a title='"+username+"' href='javascript:void(0)' class='jq' onclick='dojq(this)' data-toggle='modal' data-target='#myModal2'>"+jq+"</a>");
+				kj.setCc("<a title='"+username+"' href='javascript:void(0)' class='cc' onclick='docc(this)' data-toggle='modal' data-target='#myModal3'>"+cc+"</a>");
+				kj.setJb("<a title='"+username+"' href='javascript:void(0)' class='jb' onclick='dojb(this)' data-toggle='modal' data-target='#myModal4'>"+jb+"</a>");
+				kj.setTx("<a title='"+username+"' href='javascript:void(0)' class='tx' onclick='dotx(this)' data-toggle='modal' data-target='#myModal5'>"+tx+"</a>");
 				System.out.println(results.getString("username")+kj.getKq()+results.getString("jq")+results.getString("cc")+results.getString("jb")+results.getString("tx"));
 				list.add(kj);
 			}

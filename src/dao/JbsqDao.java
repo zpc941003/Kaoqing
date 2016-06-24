@@ -37,11 +37,65 @@ public class JbsqDao {
 		}
 		return rowCount;
 	}
+	
+	public int findSelectedCount(String name,String date1,String date2,int offset,int limit){
+		int rowCount=0;
+		try{connection=DBcon.getConnection();
+			String sql="SELECT * FROM jbsq where name='"+name+"' AND time BETWEEN '"+date1+"' AND '"+date2+"' ORDER BY time DESC";
+			infoQuery=connection.prepareStatement(sql);
+			results=infoQuery.executeQuery();
+			if(results.next()){
+				results.last(); // 将光标移动到最后一行     
+				rowCount = results.getRow(); // 得到当前行号，即结果集记录数 
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DBcon.closeResultSet(results);
+			DBcon.closeStatement(infoQuery);
+			DBcon.closeConnection(connection);
+		}
+		return rowCount;
+	}
 	//查找全部
 	public List<Jbsq> findAll(String name,int offset,int limit){
 		List<Jbsq> list=new ArrayList<Jbsq>();
 		try{connection=DBcon.getConnection();
 			String sql="SELECT * FROM jbsq where name='"+name+"' ORDER BY time DESC LIMIT "+offset+","+limit+"";
+			infoQuery=connection.prepareStatement(sql);
+			results=infoQuery.executeQuery();
+			while(results.next()){
+				Jbsq js = new Jbsq();
+				js.setId(results.getInt("id"));
+				js.setTime(results.getString("time"));
+				js.setJbtime(results.getString("jbtime"));
+				js.setName(results.getString("name"));
+				js.setPeriod(results.getString("period"));
+				js.setState(results.getString("state"));
+				list.add(js);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DBcon.closeResultSet(results);
+			DBcon.closeStatement(infoQuery);
+			DBcon.closeConnection(connection);
+		}
+		return list;
+	}
+	
+	public List<Jbsq> findSelected(String name,String date1,String date2,int offset,int limit){
+		List<Jbsq> list=new ArrayList<Jbsq>();
+		try{connection=DBcon.getConnection();
+			String sql="SELECT * FROM jbsq where name='"+name+"' AND time BETWEEN '"+date1+"' AND '"+date2+"' ORDER BY time DESC LIMIT "+offset+","+limit+"";
 			infoQuery=connection.prepareStatement(sql);
 			results=infoQuery.executeQuery();
 			while(results.next()){

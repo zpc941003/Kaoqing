@@ -96,6 +96,27 @@ public class ServletKqcx extends HttpServlet {
 			String name1=request.getParameter("name");
 			request.getSession().setAttribute("name1", name1);
 			out.print("{\"msg\":\"success\"}");
+			break;
+		case "jq":
+			String name2=request.getParameter("name");
+			request.getSession().setAttribute("name2", name2);
+			out.print("{\"msg\":\"success\"}");
+			break;
+		case "cc":
+			String name3=request.getParameter("name");
+			request.getSession().setAttribute("name3", name3);
+			out.print("{\"msg\":\"success\"}");
+			break;
+		case "jb":
+			String name4=request.getParameter("name");
+			request.getSession().setAttribute("name4", name4);
+			out.print("{\"msg\":\"success\"}");
+			break;
+		case "tx":
+			String name5=request.getParameter("name");
+			request.getSession().setAttribute("name5", name5);
+			out.print("{\"msg\":\"success\"}");
+			break;
 		default:
 			break;
 		}

@@ -11,14 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Ccsq;
+import bean.Jbsq;
 import bean.Jqsq;
 import bean.Json;
 import bean.Kqjl;
+import bean.Txsq;
 
 import com.google.gson.Gson;
 
+import dao.CcsqDao;
+import dao.JbsqDao;
 import dao.JqsqDao;
 import dao.KqjlDao;
+import dao.TxsqDao;
 
 public class ServletXxxx extends HttpServlet {
 
@@ -57,19 +63,66 @@ public class ServletXxxx extends HttpServlet {
 		String date1=(String) request.getSession().getAttribute("date1");
 		String date2=(String) request.getSession().getAttribute("date2");
 		String operate=request.getParameter("operate");
-		String name=(String) request.getSession().getAttribute("name1");
-		System.out.println(name);
+		String name1=(String) request.getSession().getAttribute("name1");
+		String name2=(String) request.getSession().getAttribute("name2");
+		String name3=(String) request.getSession().getAttribute("name3");
+		String name4=(String) request.getSession().getAttribute("name4");
+		String name5=(String) request.getSession().getAttribute("name5");
 		switch (operate) {
 		case "kq":
 			KqjlDao kd=new KqjlDao();
-			String count=""+kd.findSelectedCount(name,date1,date2,offset,limit);
+			String count=""+kd.findSelectedCount(name1,date1,date2,offset,limit);
 			List<Kqjl> list=new ArrayList<Kqjl>();
-			list=kd.findSelected(name,date1,date2,offset,limit);
+			list=kd.findSelected(name1,date1,date2,offset,limit);
 			Json json=new Json();
 			json.setTotal(count);
 			json.setRows(list);
 			Gson gson=new Gson();
 			out.print(gson.toJson(json));
+			break;
+		case "jq":
+			JqsqDao jd=new JqsqDao();
+			String count1=""+jd.findSelectedCount(name2,date1,date2,offset,limit);
+			List<Jqsq> list1=new ArrayList<Jqsq>();
+			list1=jd.findSelected(name2,date1,date2,offset,limit);
+			Json json1=new Json();
+			json1.setTotal(count1);
+			json1.setRows(list1);
+			Gson gson1=new Gson();
+			out.print(gson1.toJson(json1));
+			break;
+		case "cc":
+			CcsqDao cd=new CcsqDao();
+			String count2=""+cd.findSelectedCount(name3,date1,date2,offset,limit);
+			List<Ccsq> list2=new ArrayList<Ccsq>();
+			list2=cd.findSelected(name3,date1,date2,offset,limit);
+			Json json2=new Json();
+			json2.setTotal(count2);
+			json2.setRows(list2);
+			Gson gson2=new Gson();
+			out.print(gson2.toJson(json2));
+			break;
+		case "jb":
+			JbsqDao jd1=new JbsqDao();
+			String count11=""+jd1.findSelectedCount(name4,date1,date2,offset,limit);
+			List<Jbsq> list11=new ArrayList<Jbsq>();
+			list11=jd1.findSelected(name4,date1,date2,offset,limit);
+			Json json11=new Json();
+			json11.setTotal(count11);
+			json11.setRows(list11);
+			Gson gson11=new Gson();
+			out.print(gson11.toJson(json11));
+			break;
+		case "tx":
+			TxsqDao td=new TxsqDao();
+			String count3=""+td.findSelectedCount(name5,date1,date2,offset,limit);
+			List<Txsq> list3=new ArrayList<Txsq>();
+			list3=td.findSelected(name5,date1,date2,offset,limit);
+			Json json3=new Json();
+			json3.setTotal(count3);
+			json3.setRows(list3);
+			Gson gson3=new Gson();
+			out.print(gson3.toJson(json3));
 			break;
 
 		default:
